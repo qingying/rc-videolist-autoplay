@@ -97,7 +97,7 @@ export default class Transition extends React.Component {
       let i = 0;
       let item;
       while(item = queue[i]){
-        console.log(item);
+        console.log('i' + i);
         this.inAnim(item);
         await this.sleep(item.awaitTime);
         if (i == (len -1)) {
@@ -105,6 +105,7 @@ export default class Transition extends React.Component {
         }
         i += 1;
       }
+      console.log('end');
     }
     start();
   }

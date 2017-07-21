@@ -29,8 +29,13 @@
   >* {
     visibility: hidden;
     border: 1px solid #F00;
-    width: 400px;
-    margin: 20px auto;
+    display: inline-block;
+    margin: 5%;
+    width: 40%;
+    height: 40%;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 100%;
   }
 
   /*&.section2{

@@ -37,12 +37,11 @@ export default class Page extends Component {
       <div className="container">
         <Section1 show={1 == showSection}/>
         <Section2 show={2 == showSection}/>
-        <Section3 show={3 == showSection}/>
+        
       </div>
       <p className="btn-wrap">
         <span onClick={() => this.changeShowSection(1)}>1</span>
         <span onClick={() => this.changeShowSection(2)}>2</span>
-        <span onClick={() => this.changeShowSection(3)}>3</span>
       </p>
     </div>
   }
@@ -61,8 +60,8 @@ export class Section1 extends Transition {
   renderContent() {
     return <div className="wrap section1" ref={(el) => this.wrap = el}>
       <p ref={(el) => this.left = el} >left1</p>
-      <p ref={(el) => this.right = el}>right1</p>
       <p ref={(el) => this.top = el}>top1</p>
+      <p ref={(el) => this.right = el}>right1</p>
       <p ref={(el) => this.bottom = el}>bottom1</p>
     </div>
   }
