@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Transition from '../../src/index'
+import Transition from '../../src/index';
+
 
 export default class Page extends Component {
   constructor(props, context) {
@@ -48,14 +49,30 @@ export default class Page extends Component {
 }
 
 export class Section1 extends Transition {
-  initTransition() {
-    this.setConfig({
-      wrap: this.wrap
-    })
-    this.addTransitionSection(this.left, 'left');
-    this.addTransitionSection(this.right, 'right');
-    this.addTransitionSection(this.top, 'top');
-    this.addTransitionSection(this.bottom, 'bottom');
+  sceneConfig() {
+    return {
+      name: 'section1',
+      isSame: true,
+      inPlayTime: 300,
+      inQueue: [
+        {
+          el: this.left,
+          playType: 'left',
+        },
+        {
+          el: this.right,
+          playType: 'right',
+        },
+        {
+          el: this.top,
+          playType: 'top',
+        },
+        {
+          el: this.bottom,
+          playType: 'bottom',
+        }
+      ]
+    }
   }
   renderContent() {
     return <div className="wrap section1" ref={(el) => this.wrap = el}>
@@ -68,14 +85,30 @@ export class Section1 extends Transition {
 }
 
 export class Section2 extends Transition {
-  initTransition() {
-    this.setConfig({
-      wrap: this.wrap
-    })
-    this.addTransitionSection(this.left, 'left');
-    this.addTransitionSection(this.right, 'right');
-    this.addTransitionSection(this.top, 'top');
-    this.addTransitionSection(this.bottom, 'bottom');
+  sceneConfig() {
+    return {
+      name: 'section2',
+      isSame: true,
+      inPlayTime: 300,
+      inQueue: [
+        {
+          el: this.left,
+          playType: 'left',
+        },
+        {
+          el: this.right,
+          playType: 'right',
+        },
+        {
+          el: this.top,
+          playType: 'top',
+        },
+        {
+          el: this.bottom,
+          playType: 'bottom',
+        }
+      ]
+    }
   }
   renderContent() {
     return <div className="wrap section2" ref={(el) => this.wrap = el}>
@@ -88,14 +121,30 @@ export class Section2 extends Transition {
 }
 
 export class Section3 extends Transition {
-  initTransition() {
-    this.setConfig({
-      wrap: this.wrap
-    })
-    this.addTransitionSection(this.left, 'left');
-    this.addTransitionSection(this.right, 'right');
-    this.addTransitionSection(this.top, 'top');
-    this.addTransitionSection(this.bottom, 'bottom');
+  sceneConfig() {
+    return {
+      name: 'section3',
+      isSame: true,
+      inPlayTime: 300,
+      inQueue: [
+        {
+          el: this.left,
+          playType: 'left',
+        },
+        {
+          el: this.right,
+          playType: 'right',
+        },
+        {
+          el: this.top,
+          playType: 'top',
+        },
+        {
+          el: this.bottom,
+          playType: 'bottom',
+        }
+      ]
+    }
   }
   renderContent() {
     return <div className="wrap section3" ref={(el) => this.wrap = el}>

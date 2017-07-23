@@ -1,6 +1,3 @@
-
-export new sceneTransition();
-
 export class sceneTransition {
   constructor() {
     this.scenes = {};
@@ -28,11 +25,11 @@ export class sceneTransition {
   }
   // 重置一个场景
   resetScene(name) {
-    let { parentScene, childScene} = this.scene[name];
+    let { parentScene, childScene} = this.scenes[name];
     // 移除子场景
     childScene.map((item) => this.resetScene(item.name))
     // 父场景的childScene移除它
-    if (parent != 'root') {
+    if (parentScene != 'root') {
       let parentChildScene =  this.scene[parent].childScene;
       let index;
       for( let i = 0; i < parentChildScene.length; i++ ) {
@@ -46,16 +43,17 @@ export class sceneTransition {
       }
     }
     // 当前场景置为null
-    this.scene[name] = null;
+    this.scenes[name] = null;
   }
   /*
     name: 场景标识
     type: in/out 进场or出场
   */
   playScene(name, type) {
-    let scene = this.scenes[name];
+    let scene = this.scenes[name] && this.scenes[name].scene;
     if (!scene) {
       console.error(name + ' the scene has not be added');
+      return;
     }
     scene.play(type);
   }
@@ -84,7 +82,7 @@ export class Scene {
       tranlateName: 多场景平移相同区域标识字段
   */
   constructor(config) {
-    let { name, inQueue, outQueue, inAwaitTime, outAwaitTime, inPlayType, outPlayType, inPlayTime, outPlayTime, isSame, inPlayOverCb, outPlayOverCb } = config
+    let { name, inQueue, outQueue = [], inAwaitTime, outAwaitTime, inPlayType, outPlayType, inPlayTime, outPlayTime, isSame, inPlayOverCb, outPlayOverCb } = config
     inQueue.map((item) => {
       item.playTime = item.playTime || inPlayTime;
       item.waitTime = item.waitTime || inAwaitTime || item.playTime;
@@ -118,13 +116,13 @@ export class Scene {
       'in': this.inQueue,
       'out': this.outQueue
     }
-    let quene = queueList[type],
-    let len = quene.length;
+    let queue = queueList[type];
+    let len = queue.length;
     let start = async () => {
       let i = 0;
       let item;
       while(item = queue[i]){
-        this.inAnim(item);
+        this.anim(item, type);
         if (item.playType == 'translate' && type == 'out') {
           item.awaitTime = 0;
         }
@@ -143,7 +141,7 @@ export class Scene {
     let translate;
     let opacity;
     let extraData;
-    switch(type) {
+    switch(playType) {
       case 'left':
       case 'right':
       case 'top':
@@ -220,3 +218,5 @@ export class Scene {
     })
   }
 }
+
+export default new sceneTransition();
